@@ -10,7 +10,7 @@ gulp.task('clean', function (cb) {
 
 gulp.task('minify', ['clean'], function() {
   gulp.src('src/assets/css/*.css')
-    .pipe(minifyCSS({ keepBreaks:true }))
+    .pipe(minifyCSS())
     .pipe(gulp.dest('dist/assets/css'));
 });
 
