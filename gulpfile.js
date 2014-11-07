@@ -33,4 +33,9 @@ gulp.task('html', ['clean'], function () {
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('dist', ['assets', 'html']);
+gulp.task('php', ['clean'], function () {
+  gulp.src('src/*.php')
+    .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('dist', ['assets', 'html', 'php']);
