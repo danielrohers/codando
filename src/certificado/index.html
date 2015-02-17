@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Codando - Certificado</title>
+
+  <meta charset="UTF-8">
+  <meta name="author" content="Daniel Röhers Moura">
+  <meta name="keywords" content="codando, faccat, RS, taquara, parobé, rio grande do sul, tecnologia, metodologia, desenvolvimento, tablets, Daniel Röhers Moura, Andressa Krech, Leonardo Dalmina ">
+  <meta name="description" content="Certificados do projeto Codando.">
+
+  <meta property="og:site_name" content="codando">
+  <meta property="og:url" content="http://codando.faccat.br">
+  <meta property="og:title" content="Codando">
+  <meta property="og:description" content="Certificados do projeto Codando.">
+  <meta property="og:type" content="Codando">
+  <meta property="og:image" content="http://codando.faccat.br/assets/img/logo-icon.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="shortcut icon" href="../assets/img/favicon.png">
+
+  <link rel="stylesheet" href="../vendor/css/jquery-ui.min.css">
+
+  <style type="text/css" media="screen">
+    #control {
+      margin-left: 40%;
+      margin-top: 10%;
+    }
+
+    #control h2 {
+      margin-left: -45%;
+    }
+
+    input {
+      height: 25px;
+      width: 200px;
+      padding: 5px;
+      font-size: 15px;
+    }
+
+    button {
+      display: inline-block;
+      zoom: 1;
+      line-height: normal;
+      white-space: nowrap;
+      vertical-align: baseline;
+      text-align: center;
+      cursor: pointer;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 100%;
+      padding: .5em 1em;
+      color: #444;
+      color: rgba(0,0,0,.8);
+      border: 1px solid #999;
+      border: 0 rgba(0,0,0,0);
+      background-color: #CFCFCF;
+      text-decoration: none;
+      border-radius: 2px;
+      opacity: 1;
+      transition: opacity .25s;
+    }
+
+    button:hover {
+      opacity: 0.7;
+      transition: opacity .25s;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="control">
+    <h2>Participou do Codando? Então busque pelo seu nome para gerar seu certificado :)</h2>
+    <input id="names" name="names" placeholder="Nome" />
+    <button id="ok">OK</button>
+  </div>
+
+  <canvas id="cert" width="1170" height="690"></canvas>
+
+  <script type="text/javascript" src="../vendor/js/jquery.min.js"></script>
+  <script type="text/javascript" src="../vendor/js/jquery-ui.min.js"></script>
+
+  <script type="text/javascript">
+    function _drawCanvas (name, days) {
+      var canvas = document.getElementById("cert");
+      var context = canvas.getContext("2d");
+      var logoFaccat = new Image();
+      var logoCodando = new Image();
+      var assinatura = new Image();
+      var x = (canvas.width / 2);
+
+      logoFaccat.src = "../assets/img/faccat-white.png";
+      logoFaccat.onload = function() {
+        context.drawImage(logoFaccat, 20, 10);
+      };
+
+      logoCodando.src = "../assets/img/logo-icon.png";
+      logoCodando.onload = function() {
+        var widthCodando = 130;
+        var heightCodando = widthCodando * logoCodando.height / logoCodando.width;
+        context.drawImage(logoCodando, 1000, 10, 130, heightCodando);
+      };
+
+      context.font = "bold 50px sans-serif";
+      context.textAlign = 'center';
+      context.fillText("Certificado de participação", x, 163);
+
+      context.font = "bold 20px sans-serif";
+      context.textAlign = 'center';
+      context.fillText("Este certificado está sendo conferido a", x, 223);
+
+      context.font = "bold 40px sans-serif";
+      context.textAlign = 'center';
+      context.fillText(name, x, 290);
+
+      assinatura.src = "../assets/img/assinatura.png";
+      assinatura.onload = function() {
+        context.drawImage(assinatura, x - 64, canvas.height - 205);
+      };
+
+      context.beginPath();
+      context.moveTo(200, 300);
+      context.lineTo(950, 300);
+      context.stroke();
+
+      context.font = '18px sans-serif';
+      context.textAlign = 'center';
+      context.fillText('Prof. Dr. Marcelo Azambuja', x, canvas.height - 100);
+
+      context.font = '18px sans-serif';
+      context.textAlign = 'center';
+      context.fillText('Coordenador do Curso de Bacharelado em Sistemas de Informação', x, canvas.height - 70);
+
+      context.font = '18px sans-serif';
+      context.textAlign = 'center';
+      context.fillText('Coordenador do Curso de Tecnólogo em Sistemas para Internet', x, canvas.height - 45);
+
+
+      context.font = 'bold 20px sans-serif';
+      context.textAlign = 'center';
+      context.fillText('Certificamos sua participação no Codando Faccat, nos dias', x, 383);
+      context.fillText('27/Setembro a 15/Novembro de 2014, na cidade de Taquara/RS, com carga horária de ' + (days * 3) + ' horas.', x, 410);
+    }
+
+    $(function() {
+      var attendees = [
+        {
+          name: 'Adrieli Bilhalva de Oliveira',
+          days: 1
+        },
+
+        {
+          name: 'Amanda Carolina',
+          days: 1
+        },
+
+        {
+          name: 'Ana Luiza Schneider',
+          days: 2
+        },
+
+        {
+          name: 'Ana Thais Kichler Tavares',
+          days: 1
+        },
+
+        {
+          name: 'Anderson Guilherme da Silva',
+          days: 3
+        },
+
+        {
+          name: 'Ane Gabriela Jukoski de Moraes',
+          days: 2
+        },
+
+        {
+          name: 'Bianca dos Santos Oliveira',
+          days: 1
+        },
+
+        {
+          name: 'Bruno Barth',
+          days: 3
+        },
+
+        {
+          name: 'Bruno Henrique Flesch',
+          days: 3
+        },
+
+        {
+          name: 'Camila Lima',
+          days: 1
+        },
+
+        {
+          name: 'Cristiano Gelinger',
+          days: 2
+        },
+
+        {
+          name: 'Diego Prass',
+          days: 3
+        },
+
+        {
+          name: 'Ederson Langner',
+          days: 1
+        },
+
+        {
+          name: 'Eduardo Klein',
+          days: 4
+        },
+
+        {
+          name: 'Elieser Inácio',
+          days: 1
+        },
+
+        {
+          name: 'Elignes Erthal',
+          days: 4
+        },
+
+        {
+          name: 'Elivelton Mazurkieitz',
+          days: 5
+        },
+
+        {
+          name: 'Felipe Rech',
+          days: 1
+        },
+
+        {
+          name: 'Felipe Senger da Silva',
+          days: 1
+        },
+
+        {
+          name: 'Fernando Klein',
+          days: 4
+        },
+
+        {
+          name: 'Gabriel dos Reis da Luz',
+          days: 1
+        },
+
+        {
+          name: 'Gabriel Leuck Rodrigues Acunha',
+          days: 1
+        },
+
+        {
+          name: 'Gabriel Santos',
+          days: 2
+        },
+
+        {
+          name: 'Hassan Henrique Kullmann',
+          days: 1
+        },
+
+        {
+          name: 'Helen Fernanda dos Santos',
+          days: 3
+        },
+
+        {
+          name: 'Igor Hugentobler',
+          days: 2
+        },
+
+        {
+          name: 'João Pedro Valejo dos Santos',
+          days: 2
+        },
+
+        {
+          name: 'Juliana Silveira Jung',
+          days: 2
+        },
+
+        {
+          name: 'Karine Rocha da Silva',
+          days: 4
+        },
+
+        {
+          name: 'Liliana Descovi',
+          days: 1
+        },
+
+        {
+          name: 'Mateus da Silva Santos',
+          days: 1
+        },
+
+        {
+          name: 'Matheus Martins da Silva',
+          days: 4
+        },
+
+        {
+          name: 'Nicolas Fernando de Almeida',
+          days: 1
+        },
+
+        {
+          name: 'Rafaela Sironi',
+          days: 2
+        },
+
+        {
+          name: 'Roberta EV',
+          days: 2
+        },
+
+        {
+          name: 'Simone Jorix',
+          days: 7
+        },
+
+        {
+          name: 'Victoria Soeiro dos Santos',
+          days: 3
+        }
+      ]
+
+      var autocomplete = [];
+      for (var i = 0, l = attendees.length; i < l; i++) {
+        autocomplete.push(attendees[i].name);
+      }
+
+      var $names = $('#names');
+
+      $names.autocomplete({
+        source: autocomplete
+      });
+
+      $('#ok').on('click', function() {
+        var currentName = $names.val();
+        var att = attendees.filter(function (a) {
+          return a.name === currentName;
+        });
+        var current = att[0];
+        if (current) {
+          _drawCanvas(current.name, current.days);
+
+          $('#control').css('display','none');
+
+          setTimeout(function () {
+            window.print();
+          },500);
+        } else {
+          alert('Nome não encontrado');
+          $names.val('');
+          $names.focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
